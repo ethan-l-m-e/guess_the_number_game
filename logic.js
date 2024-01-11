@@ -3,24 +3,20 @@ window.addEventListener("load", ready);
 
 // Main function of the game
 function ready() {
-    let gameForm = document.getElementById("gameForm");
+    let playerInput = document.getElementById("playerInput");
     let responseText = document.getElementById("responseText");
     // Number to be guessed to win the game
     let myNumber = Math.floor(Math.random() * 9) + 1;
 
-    gameForm.addEventListener("submit", (e) => {
+    playerInput.addEventListener("submit", (e) => {
         e.preventDefault();
 
         // Handle the player's input
         let guess = document.getElementById("guess");
         if (guess.value == myNumber) {
-            responseText.innerHTML = "You Win!"
+            playerWins();
         } else {
-            if (guess.value < myNumber) {
-                responseText.innerHTML = `Your guess, ${guess.value}, is too low`;
-            } else {
-                responseText.innerHTML = `Your guess, ${guess.value}, is too high`;
-            }
+            playerGuessesWrong(guess.value);
         }
 
         // Clear the player's input
@@ -32,4 +28,19 @@ function ready() {
         myNumber = Math.floor(Math.random() * 9) + 1;
         responseText.innerHTML = "";
     });
+
+    /**
+     * Different guess results
+     */
+    function playerWins() {
+        responseText.innerHTML = "You Win!"
+    }
+
+    function playerGuessesWrong(guess) {
+        if (guess < myNumber) {
+            responseText.innerHTML = `Your guess, ${guess}, is too low`;
+        } else {
+            responseText.innerHTML = `Your guess, ${guess}, is too high`;
+        }
+    }
 }
