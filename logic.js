@@ -32,6 +32,7 @@ function ready() {
         responseText.innerHTML = "";
         turnsLeft = 5;
         playerTurnsText.innerHTML = `You have ${turnsLeft} turns left`;
+        toggleAcceptInput();
     });
 
     /**
@@ -39,6 +40,7 @@ function ready() {
      */
     function playerWins() {
         responseText.innerHTML = "You Win!"
+        toggleAcceptInput();
     }
 
     function playerGuessesWrong(guess) {
@@ -58,6 +60,7 @@ function ready() {
 
     function playerLoses() {
         responseText.innerHTML = "You Lose!"
+        toggleAcceptInput();
     }
 
     /**
@@ -66,5 +69,11 @@ function ready() {
     function decrementTurnsLeft() {
         turnsLeft--;
         playerTurnsText.innerHTML = `You have ${turnsLeft} turns left`;
+    }
+
+    // Disables or enables player from entering a new guess
+    function toggleAcceptInput() {
+        document.getElementById("guess").toggleAttribute("disabled");
+        document.getElementById("submitButton").toggleAttribute("disabled");
     }
 }
