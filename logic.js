@@ -25,5 +25,11 @@ function ready() {
 
         // Clear the player's input
         guess.value = "";
-    })
+    });
+
+    // Game reset button
+    document.getElementById("resetButton").addEventListener("click", () => {
+        myNumber = Math.floor(Math.random() * 9) + 1;
+        responseText.innerHTML = "";
+    });
 }
