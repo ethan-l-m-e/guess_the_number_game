@@ -4,7 +4,7 @@ window.addEventListener("load", ready);
 // Rules for this game
 const maxGuess = 20;
 const minGuess = 1;
-const turns = 3;
+const turns = 4;
 
 // Main function of the game
 function ready() {
