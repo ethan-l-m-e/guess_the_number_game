@@ -6,11 +6,9 @@ function ready() {
     let playerInput = document.getElementById("playerInput");
     let playerTurnsText = document.getElementById("playerTurnsText");
     let responseText = document.getElementById("responseText");
-    // Number to be guessed to win the game
-    let myNumber = Math.floor(Math.random() * 9) + 1;
-    let turnsLeft = 5;
-
-    clearTable();
+    
+    // Reset the game to a starting state
+    gameRestart();
 
     playerInput.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -31,22 +29,24 @@ function ready() {
     });
 
     // Game reset button
-    document.getElementById("resetButton").addEventListener("click", () => {
+    document.getElementById("resetButton").addEventListener("click", gameRestart);
+
+    function gameRestart() {
         myNumber = Math.floor(Math.random() * 9) + 1;
         responseText.innerHTML = "";
         turnsLeft = 5;
         playerTurnsText.innerHTML = `You have ${turnsLeft} turns left`;
-        toggleAcceptInput();
+        enablePlayerInput();
         clearTable();
         hideTable();
-    });
+    }
 
     /**
      * Different guess results
      */
     function playerWins() {
         responseText.innerHTML = "You Win!"
-        toggleAcceptInput();
+        disablePlayerInput();
     }
 
     function playerGuessesWrong(guess) {
@@ -68,7 +68,7 @@ function ready() {
 
     function playerLoses() {
         responseText.innerHTML = "You Lose!"
-        toggleAcceptInput();
+        disablePlayerInput();
     }
 
     /**
@@ -80,9 +80,14 @@ function ready() {
     }
 
     // Disables or enables player from entering a new guess
-    function toggleAcceptInput() {
-        document.getElementById("guess").toggleAttribute("disabled");
-        document.getElementById("submitButton").toggleAttribute("disabled");
+    function disablePlayerInput() {
+        document.getElementById("guess").setAttribute("disabled", "");
+        document.getElementById("submitButton").setAttribute("disabled", "");
+    }
+
+    function enablePlayerInput() {
+        document.getElementById("guess").removeAttribute("disabled", "");
+        document.getElementById("submitButton").removeAttribute("disabled", "");
     }
 
     // Inserts low guesses into table for player's reference
