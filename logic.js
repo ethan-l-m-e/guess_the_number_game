@@ -1,11 +1,19 @@
 // Check that the page has loaded completely
 window.addEventListener("load", ready);
 
+// Rules for this game
+const maxGuess = 20;
+const minGuess = 1;
+const turns = 3;
+
 // Main function of the game
 function ready() {
+    let gameInstructions = document.getElementById("gameInstructions");
     let playerInput = document.getElementById("playerInput");
     let playerTurnsText = document.getElementById("playerTurnsText");
     let responseText = document.getElementById("responseText");
+
+    gameInit();
     
     // Reset the game to a starting state
     gameRestart();
@@ -32,13 +40,20 @@ function ready() {
     document.getElementById("resetButton").addEventListener("click", gameRestart);
 
     function gameRestart() {
-        myNumber = Math.floor(Math.random() * 9) + 1;
+        myNumber = Math.floor(Math.random() * maxGuess) + 1;
         responseText.innerHTML = "";
-        turnsLeft = 5;
+        turnsLeft = turns;
         playerTurnsText.innerHTML = `You have ${turnsLeft} turns left`;
         enablePlayerInput();
         clearTable();
         hideTable();
+    }
+
+    // Sets up the game based on the predefined constants
+    function gameInit() {
+        gameInstructions.innerHTML = `Guess the secret number from ${minGuess} to ${maxGuess}. If your guess is too high or too low, you'll get a hint`;
+        guess.setAttribute("min", minGuess);
+        guess.setAttribute("max", maxGuess);
     }
 
     /**
