@@ -47,6 +47,14 @@ function ready() {
         enablePlayerInput();
         clearTable();
         hideTable();
+        // Bring player straight into the input box
+        guess.focus();
+    }
+
+    function gameOver() {
+        disablePlayerInput();
+        // Make it easy for player to press enter to restart
+        document.getElementById("resetButton").focus();
     }
 
     // Sets up the game based on the predefined constants
@@ -62,7 +70,7 @@ function ready() {
      */
     function playerWins() {
         responseText.innerHTML = `You Win! The number was ${myNumber}!`
-        disablePlayerInput();
+        gameOver();
     }
 
     function playerGuessesWrong(guess) {
@@ -84,7 +92,7 @@ function ready() {
 
     function playerLoses() {
         responseText.innerHTML = `You Lose! The number was ${myNumber}!`
-        disablePlayerInput();
+        gameOver();
     }
 
     /**
