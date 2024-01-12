@@ -45,7 +45,7 @@ function ready() {
      * Different guess results
      */
     function playerWins() {
-        responseText.innerHTML = "You Win!"
+        responseText.innerHTML = `You Win! The number was ${myNumber}!`
         disablePlayerInput();
     }
 
@@ -67,7 +67,7 @@ function ready() {
     }
 
     function playerLoses() {
-        responseText.innerHTML = "You Lose!"
+        responseText.innerHTML = `You Lose! The number was ${myNumber}!`
         disablePlayerInput();
     }
 
