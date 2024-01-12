@@ -22,13 +22,13 @@ function ready() {
         e.preventDefault();
 
         decrementTurnsLeft();
-        showTable();
 
         // Handle the player's input
         let guess = document.getElementById("guess");
         if (guess.value == myNumber) {
             playerWins();
         } else {
+            showTable();
             playerGuessesWrong(guess.value);
         }
 
