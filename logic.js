@@ -51,7 +51,7 @@ function ready() {
 
     // Sets up the game based on the predefined constants
     function gameInit() {
-        gameInstructions.innerHTML = `Guess the secret number from ${minGuess} to ${maxGuess}. If your guess is too high or too low, you'll get a hint`;
+        gameInstructions.innerHTML = `Guess the secret number from ${minGuess} to ${maxGuess}. If your guess is too high or too low, you'll get a hint.`;
         guess.setAttribute("min", minGuess);
         guess.setAttribute("max", maxGuess);
     }
