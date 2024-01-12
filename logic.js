@@ -74,20 +74,20 @@ function ready() {
     }
 
     function playerGuessesWrong(guess) {
-        // Game is over if out of turns
-        if (turnsLeft == 0) {
-            playerLoses();
-            return
-        }
-
-        // Else feedback to the player
+        // Feedback to the player
         if (guess < myNumber) {
             responseText.innerHTML = `Your guess, ${guess}, is too low`;
             tableInsertLow(guess);
         } else {
             responseText.innerHTML = `Your guess, ${guess}, is too high`;
             tableInsertHigh(guess);
-        }       
+        }
+
+        // Game is over if out of turns
+        if (turnsLeft == 0) {
+            playerLoses();
+            return
+        }
     }
 
     function playerLoses() {
