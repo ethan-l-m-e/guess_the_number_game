@@ -10,11 +10,15 @@ function ready() {
     let myNumber = Math.floor(Math.random() * 9) + 1;
     let turnsLeft = 5;
 
+    clearTable();
+
     playerInput.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        // Handle the player's input
         decrementTurnsLeft();
+        showTable();
+
+        // Handle the player's input
         let guess = document.getElementById("guess");
         if (guess.value == myNumber) {
             playerWins();
@@ -33,6 +37,8 @@ function ready() {
         turnsLeft = 5;
         playerTurnsText.innerHTML = `You have ${turnsLeft} turns left`;
         toggleAcceptInput();
+        clearTable();
+        hideTable();
     });
 
     /**
@@ -53,8 +59,10 @@ function ready() {
         // Else feedback to the player
         if (guess < myNumber) {
             responseText.innerHTML = `Your guess, ${guess}, is too low`;
+            tableInsertLow(guess);
         } else {
             responseText.innerHTML = `Your guess, ${guess}, is too high`;
+            tableInsertHigh(guess);
         }       
     }
 
@@ -75,5 +83,40 @@ function ready() {
     function toggleAcceptInput() {
         document.getElementById("guess").toggleAttribute("disabled");
         document.getElementById("submitButton").toggleAttribute("disabled");
+    }
+
+    // Inserts low guesses into table for player's reference
+    function tableInsertLow(guess) {
+        let lowGuesses = document.getElementById("lowGuesses");
+        if (lowGuesses.innerHTML == "") {
+            lowGuesses.innerHTML = guess;
+        } else {
+            lowGuesses.innerHTML = lowGuesses.innerHTML + "<br>" + guess;
+        }
+    }
+
+    // Inserts high guesses into table for player's reference
+    function tableInsertHigh(guess) {
+        let highGuesses = document.getElementById("highGuesses");
+        if (highGuesses.innerHTML == "") {
+            highGuesses.innerHTML = guess;
+        } else {
+            highGuesses.innerHTML = highGuesses.innerHTML + "<br>" + guess;
+        }
+    }
+
+    // Clears table of guess data when a new game begins
+    function clearTable() {
+        document.getElementById("lowGuesses").innerHTML = "";
+        document.getElementById("highGuesses").innerHTML = "";
+    }
+
+    // Table visibility when player has not made any guesses yet
+    function hideTable() {
+        document.getElementById("guessHistory").style.display = "none";
+    }
+
+    function showTable() {
+        document.getElementById("guessHistory").style.display = "block";
     }
 }
