@@ -7,10 +7,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="./logic.js"></script>
+        <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
         <h1>GUESS THE NUMBER</h1>
-        <div>
+        <div class="instruction-container">
             <header>
                 <h2>HOW TO PLAY</h2>
             </header>
@@ -23,15 +24,19 @@
         <div id="playerTurnsText">You have 5 turns left</div>
         <div id="responseText"></div>
         <table id="guessHistory" style="display: none">
-            <tr>
-                <th>Low Guesses</th>
-                <th>High Guesses</th>
-            </tr>
-            <tr>
-                <td id="lowGuesses" align="center" valign="top"></td>
-                <td id="highGuesses" align="center" valign="top"></td>
-            </tr>
+            <tbody>
+                <tr>
+                    <th>Low Guesses</th>
+                    <th>High Guesses</th>
+                </tr>
+                <tr>
+                    <td id="lowGuesses" align="center" valign="top"></td>
+                    <td id="highGuesses" align="center" valign="top"></td>
+                </tr>
+            </tbody>
         </table>
-        <button id="resetButton">Reset the game</button>
+        <div>
+            <button id="resetButton">Reset the game</button>
+        </div>
     </body>
 </html>
